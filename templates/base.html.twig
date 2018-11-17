@@ -19,6 +19,22 @@
                     <a class="nav-link" {% if current_menu is defined and current_menu == "propoerties" %}active{% endif %}href="{{ path('property.index') }}">Acheter</a>
                 </li>
             </ul>
+            {% if app.user is null%}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+            {% if app.user %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ path('admin.user.new') }}" class="nav-link">Créer un nouvel Administrateur</a>
+                        <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+                    </li>
+                </ul>   
+            {% endif %}
         </div>
     </nav>
         {% block body %}{% endblock %}
