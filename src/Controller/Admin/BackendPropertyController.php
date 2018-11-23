@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use SyResponsemfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class BackendPropertyController extends AbstractController {
     /**
@@ -36,10 +37,16 @@ class BackendPropertyController extends AbstractController {
 
     /**
      * @Route("/admin", name="admin.property.index")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index() {
-        $properties = $this->repository->findAll();
+    public function index(PaginatorInterface $paginator, Request $request) {
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1),
+            12
+        );
         return $this->render('admin/property/index.html.twig', [
             'properties' => $properties
         ]);

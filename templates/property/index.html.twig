@@ -4,4 +4,27 @@
     <div class="container mt-4">
         <h1>Voir tous nos biens</h1>
     </div>
+    <div class="container">
+        <div class="row flex mt-4">
+            {% for property in properties %}
+                <div class="col-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.getSlug}) }}">{{ property.title }}</a>
+                            </h5>
+                            <p class="card-text">
+                                {{ property.city }} ({{ property.postalCode }})
+                            </p>
+                            <div class="text-primary" style="font-weight: bold; font-size: 2rem"> {{ property.getFormattedPrice }} €</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(properties) }}
+        </div>
+    </div>
+
 {% endblock %}

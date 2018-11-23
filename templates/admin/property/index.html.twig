@@ -32,6 +32,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="navigation">
+        {{ knp_pagination_render(properties) }}
+    </div>
     <div class="text-right">
         <a href="{{ path('admin.property.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
     </div>
