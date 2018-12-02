@@ -43,7 +43,7 @@ class BackendUserController extends AbstractController
     }
 
     /**
-     * @Route("admin/user/create", name="admin.user.new")
+     * @Route("admin/user_create", name="admin.user.new")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

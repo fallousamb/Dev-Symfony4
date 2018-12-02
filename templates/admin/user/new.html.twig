@@ -5,6 +5,11 @@
         <h2>Créer un nouvel Admin</h2>
         {{ form_start(form) }}
             {{ form_widget(form) }}
+        <div class="form-group">
+            <label for="_confirmpassword">Confirmer votre mot de passe</label>
+            <input type="password" id="_confirmpassword" name="_confirmpassword" class="form-control">
+        </div>
+
         <button type="submit" class="btn btn-primary">Créer</button>
         {{ form_end(form) }}
 

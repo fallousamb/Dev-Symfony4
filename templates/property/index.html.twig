@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block title 'Tous nos biens' %}
 {% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end">
+                <div class="col">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col" hidden>
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
     <div class="container mt-4">
         <h1>Voir tous nos biens</h1>
     </div>
@@ -14,7 +36,7 @@
                                 <a href="{{ path('property.show', {id: property.id, slug: property.getSlug}) }}">{{ property.title }}</a>
                             </h5>
                             <p class="card-text">
-                                {{ property.city }} ({{ property.postalCode }})
+                                {{ property.surface }} m² - {{ property.city }} ({{ property.postalCode }})
                             </p>
                             <div class="text-primary" style="font-weight: bold; font-size: 2rem"> {{ property.getFormattedPrice }} €</div>
                         </div>
@@ -22,7 +44,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="navigation">
+        <div class="navigation" style="text-align: center">
             {{ knp_pagination_render(properties) }}
         </div>
     </div>

@@ -7,6 +7,12 @@
             <p>Bienvenue sur mon agence immobilière</p>
         </div>
     </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            <a href="" class="close">x</a>
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="container">
         <h2>Les derniers biens</h2>
         <div class="row flex mt-4">
