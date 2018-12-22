@@ -44,17 +44,13 @@ class BackendPropertyController extends AbstractController {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(PaginatorInterface $paginator, Request $request) {
-        $search = new PropertySearch();
-        $form = $this->createForm(PropertySearchType::class, $search);
-        $form->handleRequest($request);
         $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
+            $this->repository->findAllProperty(),
             $request->query->getInt('page', 1),
             12
         );
         return $this->render('admin/property/index.html.twig', [
-            'properties' => $properties,
-            'form' => $form->createView()
+            'properties' => $properties
         ]);
     }
 

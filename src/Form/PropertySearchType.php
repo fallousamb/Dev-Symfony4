@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Option;
 use App\Entity\PropertySearch;
 use Doctrine\DBAL\Types\StringType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,13 +33,25 @@ class PropertySearchType extends AbstractType
                 ]
             ])
 
-            ->add('title', TextType::class, [
+            ->add('options', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Option::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'attr' => [
+                    'placeholder' => 'Options'
+                ]
+            ])
+
+
+            /*->add('title', TextType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Titre du bien'
                 ]
-            ])
+            ])*/
         ;
     }
 

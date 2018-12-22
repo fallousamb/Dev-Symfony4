@@ -35,6 +35,15 @@ class PropertyRepository extends ServiceEntityRepository
     }
 
     /**
+     * Cette fonction retourne tous les biens sans critere de recherche
+     * @return Query
+     */
+    public function findAllProperty() {
+        $query = $this->findVisibleQuery();
+        return $query->getQuery();
+    }
+
+    /**
      * @param PropertySearch $search
      * @return Query
      */
@@ -50,10 +59,15 @@ class PropertyRepository extends ServiceEntityRepository
                 ->andWhere('p.surface >= :minsurface')
                 ->setParameter('minsurface', $search->getMinSurface());
         }
-        if($search->getTitle()) {
-            $query = $query
-                ->andWhere('p.title = :title')
-                ->setParameter('title', $search->getTitle());
+
+        if($search->getOptions()->count() > 0){
+            $k = 0;
+            foreach ($search->getOptions() as $option) {
+                $k++;
+                $query = $query
+                    ->andWhere(":option$k MEMBER OF p.options")
+                    ->setParameter("option$k", $option);
+            }
         }
         return $query->getQuery();
     }
