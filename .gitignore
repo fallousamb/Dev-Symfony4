@@ -1,4 +1,6 @@
-
+public/images
+public/media
+.idea/
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
@@ -9,9 +11,12 @@
 ###> symfony/phpunit-bridge ###
 .phpunit
 /phpunit.xml
+
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
-.idea/
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

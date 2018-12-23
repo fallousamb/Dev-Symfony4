@@ -30,17 +30,7 @@
         <div class="row flex mt-4">
             {% for property in properties %}
                 <div class="col-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ path('property.show', {id: property.id, slug: property.getSlug}) }}">{{ property.title }}</a>
-                            </h5>
-                            <p class="card-text">
-                                {{ property.surface }} m² - {{ property.city }} ({{ property.postalCode }})
-                            </p>
-                            <div class="text-primary" style="font-weight: bold; font-size: 2rem"> {{ property.getFormattedPrice }} €</div>
-                        </div>
-                    </div>
+                    {{ include('property/_property.html.twig') }}
                 </div>
             {% endfor %}
         </div>
